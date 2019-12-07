@@ -70,6 +70,23 @@ Now you are done :)
 
 Install the OSC library from the Library Manager :-)
 
+It might not compile until the following patch is applied to one of the header files in the OSC Library: SLIPEncodedSerial.h
+
+From the line 9 the code shall look like this:
+```
+#include "Arduino.h"
+#include <Stream.h>
+#ifdef ARDUINO_API_VERSION
+#include <api/HardwareSerial.h>
+#else
+#include <HardwareSerial.h>
+#endif
+```
+
+Reference: https://github.com/arduino/ArduinoCore-megaavr/issues/36
+
+
+
 ## Code Snippets
 
 ### MDNS
